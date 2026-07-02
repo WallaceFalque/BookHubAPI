@@ -1,4 +1,5 @@
 using BookHubAPI.DataBase;
+using BookHubAPI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<LivrosService>();
 
 builder.Services.AddDbContext<AppDbContext> (options =>
 {
