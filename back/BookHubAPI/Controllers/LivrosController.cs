@@ -16,13 +16,13 @@ namespace BookHubAPI.Controllers
     public class LivrosController : ControllerBase
     {
         private readonly LivrosService ls;
-        public LivrosController (LivrosService ls)
+        public LivrosController(LivrosService ls)
         {
             this.ls = ls;
         }
 
         [HttpGet]
-        public ActionResult GetAll ()
+        public ActionResult GetAll()
         {
             var livros = ls.ListarTodos();
 
@@ -39,22 +39,42 @@ namespace BookHubAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetById (int id)
+        public ActionResult GetById(int id)
         {
             var livro = ls.ListarPorId(id);
             if (livro is null) return NotFound();
 
             LivroResponseDto response = new LivroResponseDto
             {
-                 Id = livro.Id,
+                Id = livro.Id,
                 Titulo = livro.Titulo,
                 AnoPublicacao = livro.AnoPublicacao,
                 Autor = livro.Autor!.Nome,
                 Categoria = livro.Categoria!.Nome
-                
+
             };
-            
+
             return Ok(response);
+        }
+
+        [HttpPost]
+        public ActionResult Create(LivroCreateDto dto)
+        {
+            var livro = ls.CriarLivro(dto);
+            return livro is null ? BadRequest() : Ok(livro);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Edit(LivroUpdateDto dto, int id)
+        {
+            var livro = ls.EditarLivro(dto, id);
+            return livro is null ? NotFound() : Ok(livro);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult Delet(int id)
+        {
+            
         }
     }
 }

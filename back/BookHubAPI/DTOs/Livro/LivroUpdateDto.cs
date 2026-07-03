@@ -7,7 +7,7 @@ namespace BookHubAPI.DTOs.Livro
 {
     public class LivroUpdateDto
     {
-          public string Titulo {get; set;} = string.Empty;
+        public string Titulo {get; set;} = string.Empty;
         public int AnoPublicacao { get; set; }
         public int AutorId { get; set; }
         public int CategoriaId { get; set; }
