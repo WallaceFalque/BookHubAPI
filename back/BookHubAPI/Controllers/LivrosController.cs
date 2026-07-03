@@ -68,13 +68,15 @@ namespace BookHubAPI.Controllers
         public ActionResult Edit(LivroUpdateDto dto, int id)
         {
             var livro = ls.EditarLivro(dto, id);
-            return livro is null ? NotFound() : Ok(livro);
+            return livro is null ? NotFound() : Ok(dto);
         }
 
         [HttpDelete("{id}")]
         public ActionResult Delet(int id)
         {
-            
+            bool deletado = ls.DeletarLivro(id);
+
+            return deletado ? Ok() : NotFound();
         }
     }
 }

@@ -60,12 +60,23 @@ namespace BookHubAPI.Services
 
             livroEscolhido?.Titulo = dto.Titulo;
             livroEscolhido?.AnoPublicacao = dto.AnoPublicacao;       
-            livroEscolhido?.AutorId = dto.CategoriaId;
+            livroEscolhido?.AutorId = dto.AutorId;
+            livroEscolhido?.CategoriaId = dto.CategoriaId;
 
             db.SaveChanges();
 
-            return livroEscolhido;
-            
+            return livroEscolhido;            
+        }
+
+        public bool DeletarLivro (int id)
+        {
+            var livroDelete = db.Livros.FirstOrDefault(c => c.Id == id);
+
+            if (livroDelete is null) return false;
+
+            db.Livros.Remove(livroDelete);
+            db.SaveChanges();
+            return true;
         }
     }
 }
