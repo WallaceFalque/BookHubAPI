@@ -10,6 +10,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<LivrosService>();
+builder.Services.AddScoped<AutorService>();
 
 builder.Services.AddDbContext<AppDbContext> (options =>
 {

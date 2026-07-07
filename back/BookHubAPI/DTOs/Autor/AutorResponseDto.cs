@@ -7,6 +7,6 @@ namespace BookHubAPI.DTOs.Livro.Autor
 {
     public class AutorResponseDto
     {
-        
+        public string Nome { get; set; } = string.Empty;
     }
 }

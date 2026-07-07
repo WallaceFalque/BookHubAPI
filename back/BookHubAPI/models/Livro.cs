@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BookHubAPI.models
@@ -11,6 +12,7 @@ namespace BookHubAPI.models
         public string Titulo { get; set; } = string.Empty;
         public int AnoPublicacao { get; set; }
         public int AutorId { get; set; }
+        [JsonIgnore]
         public Autor? Autor { get; set; }
         public int CategoriaId { get; set; }
         public Categoria? Categoria { get; set; }
