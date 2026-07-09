@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BookHubAPI.DataBase;
+using BookHubAPI.DTOs.Livro;
 using BookHubAPI.DTOs.Livro.Autor.Categoria;
 using BookHubAPI.models;
 

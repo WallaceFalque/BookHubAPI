@@ -34,9 +34,27 @@ namespace BookHubAPI.Services
             .FirstOrDefault(c => c.Id == id));
         }
 
+         public List<LivroResponseDto>? ListarPorAutor (int Autorid)
+        {
+            var livros = db.Livros
+            .Where(c => c.AutorId == Autorid)
+            .Select(c => new LivroResponseDto
+            {
+                Id = c.Id,
+                Titulo = c.Titulo,
+                AnoPublicacao = c.AnoPublicacao,
+                Autor = c.Autor!.Nome,
+                Categoria = c.Categoria!.Nome
+            }); 
+           
+            return livros.ToList();
+        }
+
+
         public Livro? CriarLivro(LivroCreateDto dto)
         {
             if (dto is null) return null;
+            if (db.Autores.FirstOrDefault(c => c.Id == dto.AutorId) is null) return null;
 
             Livro response = new Livro
             {

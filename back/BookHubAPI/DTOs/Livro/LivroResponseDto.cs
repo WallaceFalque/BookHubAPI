@@ -11,6 +11,7 @@ namespace BookHubAPI.DTOs.Livro
     public string Titulo { get; set; } = string.Empty;
     public int AnoPublicacao { get; set; }
     public string Autor { get; set; } = string.Empty;
+    
     public string Categoria { get; set; } = string.Empty;
     }
 }

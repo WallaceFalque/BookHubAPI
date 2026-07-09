@@ -57,6 +57,13 @@ namespace BookHubAPI.Controllers
             return Ok(response);
         }
 
+        [HttpGet("Autor/{AutorId}")]
+        public ActionResult GetByAutor (int AutorId)
+        {
+            var response = ls.ListarPorAutor(AutorId);
+            return response is null ? NotFound() : Ok(response);
+        }
+
         [HttpPost]
         public ActionResult Create(LivroCreateDto dto)
         {
