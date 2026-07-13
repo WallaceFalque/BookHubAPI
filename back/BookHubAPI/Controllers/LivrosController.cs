@@ -64,11 +64,18 @@ namespace BookHubAPI.Controllers
             return response is null ? NotFound() : Ok(response);
         }
 
+        [HttpGet("Categoria/{categoriaId}")]
+        public ActionResult GetByCategoria (int categoriaId)
+        {
+            var response = ls.ListarPorCategoria(categoriaId);
+            return response is null ? NotFound() : Ok(response);
+        }
+
         [HttpPost]
         public ActionResult Create(LivroCreateDto dto)
         {
-            var livro = ls.CriarLivro(dto);
-            return livro is null ? BadRequest() : Ok(livro);
+            var response = ls.CriarLivro(dto);
+            return response is null ? BadRequest() : Ok(response);
         }
 
         [HttpPut("{id}")]

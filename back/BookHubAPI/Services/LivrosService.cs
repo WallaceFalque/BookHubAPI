@@ -46,7 +46,24 @@ namespace BookHubAPI.Services
                 Autor = c.Autor!.Nome,
                 Categoria = c.Categoria!.Nome
             }); 
-           
+           if (livros.Count() == 0) return null;
+            return livros.ToList();
+        }
+
+        public List<LivroResponseDto>? ListarPorCategoria (int categoriaId)
+        {
+            var livros = db.Livros
+            .Where(c => c.CategoriaId == categoriaId)
+            .Select(c => new LivroResponseDto
+            {
+                Id = c.Id,
+                Titulo = c.Titulo,
+                AnoPublicacao = c.AnoPublicacao,
+                Autor = c.Autor!.Nome,
+                Categoria = c.Categoria!.Nome
+                
+            });
+            if (livros.Count() == 0) return null;
             return livros.ToList();
         }
 
